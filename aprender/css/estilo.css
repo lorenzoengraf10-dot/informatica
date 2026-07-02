@@ -30,6 +30,13 @@ body {
 
 .topbar h1 { margin: 0; font-size: 1.3rem; }
 
+.subtitulo {
+  margin: 0.2rem 0 0 0;
+  font-size: 0.85rem;
+  color: #dff0f1;
+  max-width: 500px;
+}
+
 .progreso { min-width: 220px; }
 
 .progreso span { font-size: 0.85rem; }
@@ -51,20 +58,38 @@ body {
 
 .layout {
   display: grid;
-  grid-template-columns: 260px 1fr;
+  grid-template-columns: 280px 1fr;
   gap: 1.5rem;
   padding: 1.5rem;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
 .sidebar h2 { font-size: 1rem; color: var(--acento); margin-top: 0; }
+
+.sidebar {
+  max-height: calc(100vh - 3rem);
+  overflow-y: auto;
+  position: sticky;
+  top: 1.5rem;
+}
 
 #lista-lecciones {
   list-style: none;
   padding: 0;
   margin: 0 0 1rem 0;
 }
+
+.titulo-categoria {
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #888;
+  padding: 0.8rem 0.4rem 0.3rem;
+}
+
+.titulo-categoria:first-child { padding-top: 0.2rem; }
 
 .item-leccion {
   display: flex;
@@ -77,7 +102,7 @@ body {
   padding: 0.5rem 0.4rem;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--texto);
 }
 
@@ -166,6 +191,7 @@ body {
   border: 1px solid var(--borde);
   border-radius: 4px;
   resize: vertical;
+  tab-size: 2;
 }
 
 .vista-previa {
@@ -175,6 +201,50 @@ body {
   border-radius: 6px;
   margin-bottom: 1.5rem;
   background-color: white;
+}
+
+.detalle-solucion {
+  background-color: #fbf9f4;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.detalle-solucion summary {
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--acento);
+}
+
+.explicacion-solucion {
+  margin: 0.8rem 0;
+  line-height: 1.5;
+}
+
+.solucion-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.solucion-columna strong {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--acento);
+  margin-bottom: 0.3rem;
+}
+
+.solucion-columna pre {
+  background-color: #2b2b2b;
+  color: #f0e8d5;
+  padding: 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  overflow-x: auto;
+  max-height: 200px;
+  margin: 0;
 }
 
 .campo-notas {
@@ -197,4 +267,6 @@ body {
 @media (max-width: 850px) {
   .layout { grid-template-columns: 1fr; }
   .editor-grid { grid-template-columns: 1fr; }
+  .solucion-grid { grid-template-columns: 1fr; }
+  .sidebar { position: static; max-height: none; }
 }

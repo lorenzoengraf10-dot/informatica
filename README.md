@@ -5,10 +5,11 @@ control de versiones) de forma autodidacta y sin apuro.
 
 ## Empezar acá
 
-**[`aprender/index.html`](aprender/index.html)** es una aplicación de lecciones
-interactivas de HTML, CSS y JavaScript con editor de código en vivo: se abre en
-el navegador, sin instalar nada, y guarda tu progreso solo. Ver
-`aprender/README.md` para el detalle de cómo usarla.
+**[`aprender/index.html`](aprender/index.html)** es una aplicación de 18
+lecciones interactivas de HTML, CSS y JavaScript con editor de código en vivo
+y solución sugerida en cada una: se abre en el navegador, sin instalar nada, y
+guarda tu progreso solo. Ver `aprender/README.md` para el detalle de cómo
+usarla y el temario completo.
 
 La idea de fondo: el emprendimiento real **Productos Patagónicos**
 (repositorio [`productosoatagonicos`](https://github.com/lorenzoengraf10-dot/productosoatagonicos))
@@ -20,7 +21,7 @@ lecciones y los proyectos de práctica más chicos y sueltos.
 
 ```
 informatica/
-  aprender/                 aplicación de lecciones interactivas (empezar acá)
+  aprender/                 aplicación de 18 lecciones interactivas (empezar acá)
   ROADMAP.md                plan general de aprendizaje, por fases
   BITACORA.md               registro personal: qué se probó, qué se aprendió, cuándo
   proyectos-practica/
@@ -30,7 +31,8 @@ informatica/
 
 ## Cómo se usa este repositorio
 
-1. Arrancar por `aprender/` para los fundamentos de HTML/CSS/JS con ejercicios guiados.
+1. Arrancar por `aprender/` para los fundamentos de HTML/CSS/JS con ejercicios guiados
+   y solución sugerida para cada uno.
 2. Cada vez que se prueba algo nuevo por fuera de una lección (una función, un
    concepto de DNS, CDN, etc.), se anota en `BITACORA.md`: fecha, qué se probó,
    qué funcionó o no, y por qué.

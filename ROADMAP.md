@@ -5,14 +5,20 @@ proyecto real y concreto, no en ejercicios sueltos sin contexto.
 
 ## Fase 1 — Fundamentos de HTML, CSS y JavaScript
 
-Proyecto de apoyo: `proyectos-practica/pagina-pruebas/`.
+Proyecto de apoyo: [`aprender/`](aprender/) (18 lecciones interactivas con
+solución sugerida) y `proyectos-practica/pagina-pruebas/`.
 
 - [x] Estructura semántica de HTML (`header`, `main`, `section`, `footer`, etc.).
-- [x] Formularios y validación básica (`required`, tipos de `input`).
-- [x] Manipulación del DOM con JavaScript (leer, crear y actualizar elementos).
-- [x] `localStorage` como forma simple de persistencia en el navegador.
-- [ ] Practicar responsive design (media queries) probando en el celular propio.
-- [ ] Practicar accesibilidad básica (etiquetas `label`, contraste de colores, `alt`).
+- [x] HTML: listas, tablas, formularios completos, imágenes y accesibilidad (`alt`).
+- [x] CSS: modelo de caja, Flexbox, Grid, diseño responsive (media queries),
+      transiciones y estados (`:hover`).
+- [x] JavaScript: variables, funciones, condicionales, arrays y sus métodos
+      (`forEach`, `filter`), objetos, DOM, eventos y formularios, JSON,
+      `localStorage`, manejo de errores (`try/catch`).
+- [ ] Resolver los 18 desafíos de `aprender/` sin mirar la solución sugerida
+      antes de intentarlo (usarla para comparar, no para copiar directo).
+- [ ] Practicar accesibilidad más a fondo (contraste de colores, navegación
+      solo con teclado).
 
 ## Fase 2 — Organización de proyectos y control de versiones
 
@@ -29,7 +35,7 @@ Proyecto de apoyo: `proyectos-practica/pagina-pruebas/`.
 - [ ] Conectar ese backend a una base de datos (empezar con SQLite, más simple que
       MySQL para practicar en la propia computadora).
 - [ ] Migrar el panel de gestión de Productos Patagónicos de `localStorage` a este
-      backend (ver `docs/ROADMAP-APRENDIZAJE.md` de ese repositorio).
+      backend.
 - [ ] Entender qué es una inyección SQL y por qué se usan consultas preparadas.
 
 ## Fase 4 — Dominio, DNS y CDN
@@ -53,7 +59,7 @@ Proyecto de apoyo: `proyectos-practica/blog-personal/`.
 ## Fase 6 — Seguridad en capas
 
 Esta fase se hace en paralelo con Productos Patagónicos cuando ese proyecto llegue
-a tener un backend real expuesto en internet (ver el roadmap de ese repositorio).
+a tener un backend real expuesto en internet.
 
 - [ ] HTTPS en todos los dominios propios.
 - [ ] Cabeceras de seguridad básicas (CSP, X-Content-Type-Options).

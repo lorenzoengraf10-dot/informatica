@@ -10,7 +10,10 @@
 <body>
 
 <header class="topbar">
-  <h1>Aprender a programar</h1>
+  <div>
+    <h1>Aprender a programar</h1>
+    <p class="subtitulo">Elegí una lección, editá el código y mirá el resultado en vivo. Si te trabás, cada lección tiene una solución sugerida.</p>
+  </div>
   <div class="progreso">
     <span id="texto-progreso">0 / 0 lecciones completadas</span>
     <div class="barra-progreso"><div id="barra-progreso-relleno" class="barra-progreso-relleno"></div></div>
@@ -59,6 +62,26 @@
 
     <h3>Resultado</h3>
     <iframe id="vista-previa" class="vista-previa" title="Resultado del código"></iframe>
+
+    <details id="detalle-solucion" class="detalle-solucion">
+      <summary>¿Te trabaste? Ver una solución sugerida</summary>
+      <p id="explicacion-solucion" class="explicacion-solucion"></p>
+      <div class="solucion-grid">
+        <div class="solucion-columna">
+          <strong>HTML</strong>
+          <pre><code id="solucion-html"></code></pre>
+        </div>
+        <div class="solucion-columna">
+          <strong>CSS</strong>
+          <pre><code id="solucion-css"></code></pre>
+        </div>
+        <div class="solucion-columna">
+          <strong>JavaScript</strong>
+          <pre><code id="solucion-js"></code></pre>
+        </div>
+      </div>
+      <button id="btn-cargar-solucion" class="btn btn-secundario">Cargar esta solución en el editor</button>
+    </details>
 
     <h3>Mis notas de esta lección</h3>
     <textarea id="campo-notas" class="campo-notas" placeholder="Anotá acá lo que te costó, lo que entendiste, preguntas para después..."></textarea>
