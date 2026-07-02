@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aprender a programar — informática</title>
+<meta name="description" content="Lecciones interactivas de HTML, CSS y JavaScript con editor de código en vivo, para aprender a programar de forma autodidacta.">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+<header class="topbar">
+  <h1>Aprender a programar</h1>
+  <div class="progreso">
+    <span id="texto-progreso">0 / 0 lecciones completadas</span>
+    <div class="barra-progreso"><div id="barra-progreso-relleno" class="barra-progreso-relleno"></div></div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <h2>Lecciones</h2>
+    <ul id="lista-lecciones"></ul>
+    <button id="btn-reiniciar-todo" class="btn btn-peligro btn-chico">Reiniciar todo mi progreso</button>
+  </aside>
+
+  <main class="contenido">
+    <h2 id="titulo-leccion"></h2>
+    <p id="resumen-leccion" class="resumen"></p>
+
+    <div class="caja-reto">
+      <strong>Desafío:</strong> <span id="reto-leccion"></span>
+    </div>
+
+    <div class="acciones-leccion">
+      <button id="btn-completada" class="btn btn-primario"></button>
+      <button id="btn-reiniciar-codigo" class="btn btn-secundario">Reiniciar código de esta lección</button>
+    </div>
+
+    <div class="editor-grid">
+      <div class="editor-columna">
+        <label for="editor-html">HTML</label>
+        <textarea id="editor-html" spellcheck="false"></textarea>
+      </div>
+      <div class="editor-columna">
+        <label for="editor-css">CSS</label>
+        <textarea id="editor-css" spellcheck="false"></textarea>
+      </div>
+      <div class="editor-columna">
+        <label for="editor-js">JavaScript</label>
+        <textarea id="editor-js" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    <div class="acciones-leccion">
+      <button id="btn-ejecutar" class="btn btn-primario">Ejecutar ahora</button>
+      <span class="ayuda-chica">El resultado también se actualiza solo mientras escribís.</span>
+    </div>
+
+    <h3>Resultado</h3>
+    <iframe id="vista-previa" class="vista-previa" title="Resultado del código"></iframe>
+
+    <h3>Mis notas de esta lección</h3>
+    <textarea id="campo-notas" class="campo-notas" placeholder="Anotá acá lo que te costó, lo que entendiste, preguntas para después..."></textarea>
+  </main>
+</div>
+
+<footer class="pie">
+  Proyecto de práctica personal · repositorio <code>informatica</code> · no es un servicio ofrecido a terceros
+</footer>
+
+<script src="js/lecciones.js"></script>
+<script src="js/progreso.js"></script>
+<script src="js/playground.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
