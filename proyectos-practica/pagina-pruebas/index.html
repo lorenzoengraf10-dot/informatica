@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Página de pruebas — lista de tareas</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<header>
+  <h1>Página de pruebas</h1>
+  <p>Proyecto chico para practicar HTML, CSS y JavaScript sin miedo a romper nada.</p>
+</header>
+
+<main>
+  <section aria-labelledby="titulo-tareas">
+    <h2 id="titulo-tareas">Lista de tareas</h2>
+
+    <form id="form-tarea">
+      <label for="input-tarea">Nueva tarea</label>
+      <input type="text" id="input-tarea" placeholder="Ej: practicar selectores CSS" required>
+      <button type="submit">Agregar</button>
+    </form>
+
+    <ul id="lista-tareas"></ul>
+
+    <p id="contador-tareas"></p>
+  </section>
+</main>
+
+<footer>
+  <p>Ver <code>README.md</code> de esta carpeta para la explicación de cada parte.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

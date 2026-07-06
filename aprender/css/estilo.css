@@ -1,0 +1,374 @@
+/* ------------------------------------------------------------------
+   Estilos de la app "Aprender a programar".
+   Pensada PRIMERO para el celular (mobile-first): las reglas base son las
+   del teléfono, y más abajo hay una sola media query que mejora el layout
+   en pantallas anchas. Botones y campos grandes para el pulgar; letra de
+   16px en los campos para que el celular no haga zoom al tocarlos.
+   ------------------------------------------------------------------ */
+
+:root {
+  --acento: #2a6f77;
+  --acento-claro: #e4f1f2;
+  --texto: #222;
+  --fondo: #fafafa;
+  --borde: #ddd;
+  --verde-ok: #3a7d44;
+  --rojo: #a83232;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: var(--texto);
+  background-color: var(--fondo);
+  font-size: 16px;
+  /* Respetar la "zona segura" de los celulares con notch */
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.visualmente-oculto {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
+/* ---------- Barra superior ---------- */
+
+.topbar {
+  background-color: var(--acento);
+  color: white;
+  padding: 12px 16px;
+  padding-top: calc(12px + env(safe-area-inset-top));
+}
+
+.topbar h1 { margin: 0 0 6px 0; font-size: 1.15rem; }
+
+.progreso span { font-size: 0.8rem; }
+
+.barra-progreso {
+  background-color: rgba(255,255,255,0.3);
+  border-radius: 6px;
+  height: 8px;
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+.barra-progreso-relleno {
+  background-color: #e8b84b;
+  height: 100%;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+/* ---------- Navegación (desplegable + flechas) ---------- */
+
+.navegacion {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: white;
+  border-bottom: 1px solid var(--borde);
+  padding: 10px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.selector-leccion {
+  width: 100%;
+  font-size: 16px;
+  padding: 12px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background-color: white;
+  color: var(--texto);
+}
+
+.nav-flechas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.contador-leccion {
+  font-size: 0.85rem;
+  color: #777;
+  white-space: nowrap;
+}
+
+.btn-nav {
+  flex: 1;
+  background-color: var(--acento-claro);
+  color: var(--acento);
+  min-height: 44px;
+}
+
+.btn-nav:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* ---------- Contenido ---------- */
+
+.contenido {
+  padding: 16px;
+}
+
+.chip-categoria {
+  display: inline-block;
+  background-color: var(--acento);
+  color: white;
+  font-size: 0.72rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+
+.contenido h2 {
+  margin: 4px 0 10px 0;
+  font-size: 1.3rem;
+  line-height: 1.25;
+}
+
+.contenido h3 {
+  margin: 20px 0 8px 0;
+  font-size: 1.05rem;
+}
+
+.resumen { line-height: 1.6; white-space: pre-line; margin: 0 0 14px 0; }
+
+.caja-reto {
+  background-color: var(--acento-claro);
+  border-left: 4px solid var(--acento);
+  padding: 12px 14px;
+  border-radius: 6px;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.acciones-leccion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.ayuda-chica { font-size: 0.85rem; color: #777; }
+
+/* ---------- Botones (grandes para el dedo) ---------- */
+
+.btn {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  min-height: 44px;
+  font-family: inherit;
+}
+
+.btn-primario { background-color: var(--acento); color: white; }
+.btn-primario:active { opacity: 0.85; }
+.btn-primario.completada { background-color: var(--verde-ok); }
+
+.btn-secundario { background-color: #eee; color: var(--texto); }
+
+.btn-peligro { background-color: var(--rojo); color: white; }
+
+.btn-chico { font-size: 0.85rem; padding: 10px 14px; min-height: 0; margin-top: 24px; width: 100%; }
+
+/* ---------- Editores con pestañas ---------- */
+
+.editor-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.editor-tab {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid var(--borde);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  background-color: #f0f0f0;
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.editor-tab.activo {
+  background-color: var(--acento);
+  color: white;
+  border-color: var(--acento);
+}
+
+.editor-grid { margin-bottom: 14px; }
+
+.editor-panel { display: none; }
+.editor-panel.activo { display: block; }
+
+.etiqueta-editor {
+  display: none; /* en el celular la pestaña ya dice cuál es */
+}
+
+.editor-panel textarea {
+  width: 100%;
+  height: 200px;
+  font-family: 'Courier New', monospace;
+  font-size: 15px;
+  padding: 12px;
+  border: 1px solid var(--borde);
+  border-radius: 0 8px 8px 8px;
+  resize: vertical;
+  tab-size: 2;
+  line-height: 1.5;
+}
+
+/* ---------- Resultado ---------- */
+
+.vista-previa {
+  width: 100%;
+  height: 260px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background-color: white;
+}
+
+/* ---------- Solución sugerida ---------- */
+
+.detalle-solucion {
+  background-color: #fbf9f4;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+
+.detalle-solucion summary {
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--acento);
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.explicacion-solucion { margin: 12px 0; line-height: 1.55; }
+
+.solucion-grid { margin-bottom: 12px; }
+
+.solucion-columna { margin-bottom: 12px; }
+
+.solucion-columna strong {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--acento);
+  margin-bottom: 4px;
+}
+
+.solucion-columna pre {
+  background-color: #2b2b2b;
+  color: #f0e8d5;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  overflow-x: auto;
+  margin: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ---------- Notas ---------- */
+
+.campo-notas {
+  width: 100%;
+  height: 110px;
+  padding: 12px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 16px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.pie {
+  text-align: center;
+  padding: 16px;
+  font-size: 0.8rem;
+  color: #888;
+  line-height: 1.5;
+}
+
+/* ==================================================================
+   Pantallas anchas (tablet / computadora): se aprovecha el espacio.
+   La versión de celular es la base; esto es solo una mejora encima.
+   ================================================================== */
+
+@media (min-width: 900px) {
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topbar h1 { margin: 0; font-size: 1.3rem; }
+  .progreso { min-width: 240px; }
+
+  .navegacion {
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 24px;
+  }
+  .selector-leccion { max-width: 420px; }
+  .nav-flechas { margin-left: auto; flex: 0 0 auto; }
+  .btn-nav { flex: 0 0 auto; }
+
+  .contenido {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+
+  /* En pantalla ancha se muestran los tres editores a la vez y se ocultan
+     las pestañas: hay espacio de sobra y es más cómodo verlos juntos. */
+  .editor-tabs { display: none; }
+  .editor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .editor-panel { display: block; }
+  .etiqueta-editor {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--acento);
+    margin-bottom: 4px;
+  }
+  .editor-panel textarea {
+    height: 180px;
+    border-radius: 6px;
+  }
+
+  .solucion-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .btn-chico { width: auto; }
+}
