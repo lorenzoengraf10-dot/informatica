@@ -2,91 +2,114 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Aprender a programar — informática</title>
-<meta name="description" content="Lecciones interactivas de HTML, CSS y JavaScript con editor de código en vivo, para aprender a programar de forma autodidacta.">
+<meta name="description" content="Lecciones interactivas de HTML, CSS y JavaScript con editor de código en vivo, pensadas para el celular. Aprendé a programar de forma autodidacta.">
+
+<!-- Pensado para el celular: color de la barra del navegador e instalable como app -->
+<meta name="theme-color" content="#2a6f77">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Aprender">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icono.svg">
+<link rel="icon" href="icono.svg" type="image/svg+xml">
+
 <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
 
 <header class="topbar">
-  <div>
-    <h1>Aprender a programar</h1>
-    <p class="subtitulo">Elegí una lección, editá el código y mirá el resultado en vivo. Si te trabás, cada lección tiene una solución sugerida.</p>
-  </div>
+  <h1>Aprender a programar</h1>
   <div class="progreso">
     <span id="texto-progreso">0 / 0 lecciones completadas</span>
     <div class="barra-progreso"><div id="barra-progreso-relleno" class="barra-progreso-relleno"></div></div>
   </div>
 </header>
 
-<div class="layout">
-  <aside class="sidebar">
-    <h2>Lecciones</h2>
-    <ul id="lista-lecciones"></ul>
-    <button id="btn-reiniciar-todo" class="btn btn-peligro btn-chico">Reiniciar todo mi progreso</button>
-  </aside>
+<!-- Navegación pensada para el pulgar: un desplegable para saltar a cualquier
+     lección + botones grandes de anterior/siguiente. -->
+<nav class="navegacion">
+  <label class="visualmente-oculto" for="selector-leccion">Elegir lección</label>
+  <select id="selector-leccion" class="selector-leccion"></select>
+  <div class="nav-flechas">
+    <button id="btn-anterior" class="btn btn-nav" type="button">◀ Anterior</button>
+    <span id="contador-leccion" class="contador-leccion">1 / 27</span>
+    <button id="btn-siguiente" class="btn btn-nav" type="button">Siguiente ▶</button>
+  </div>
+</nav>
 
-  <main class="contenido">
-    <h2 id="titulo-leccion"></h2>
-    <p id="resumen-leccion" class="resumen"></p>
+<main class="contenido">
+  <span id="categoria-leccion" class="chip-categoria"></span>
+  <h2 id="titulo-leccion"></h2>
+  <p id="resumen-leccion" class="resumen"></p>
 
-    <div class="caja-reto">
-      <strong>Desafío:</strong> <span id="reto-leccion"></span>
+  <div class="caja-reto">
+    <strong>Desafío:</strong> <span id="reto-leccion"></span>
+  </div>
+
+  <div class="acciones-leccion">
+    <button id="btn-completada" class="btn btn-primario"></button>
+    <button id="btn-reiniciar-codigo" class="btn btn-secundario">Reiniciar código</button>
+  </div>
+
+  <!-- En el celular, un editor a la vez con pestañas (menos scroll). En pantalla
+       ancha se muestran los tres a la vez (lo maneja el CSS). -->
+  <div class="editor-tabs" role="tablist">
+    <button class="editor-tab activo" data-editor="html" type="button">HTML</button>
+    <button class="editor-tab" data-editor="css" type="button">CSS</button>
+    <button class="editor-tab" data-editor="js" type="button">JS</button>
+  </div>
+
+  <div class="editor-grid">
+    <div class="editor-panel activo" data-editor="html">
+      <label class="etiqueta-editor" for="editor-html">HTML</label>
+      <textarea id="editor-html" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea>
     </div>
-
-    <div class="acciones-leccion">
-      <button id="btn-completada" class="btn btn-primario"></button>
-      <button id="btn-reiniciar-codigo" class="btn btn-secundario">Reiniciar código de esta lección</button>
+    <div class="editor-panel" data-editor="css">
+      <label class="etiqueta-editor" for="editor-css">CSS</label>
+      <textarea id="editor-css" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea>
     </div>
+    <div class="editor-panel" data-editor="js">
+      <label class="etiqueta-editor" for="editor-js">JavaScript</label>
+      <textarea id="editor-js" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea>
+    </div>
+  </div>
 
-    <div class="editor-grid">
-      <div class="editor-columna">
-        <label for="editor-html">HTML</label>
-        <textarea id="editor-html" spellcheck="false"></textarea>
+  <div class="acciones-leccion">
+    <button id="btn-ejecutar" class="btn btn-primario">Ejecutar ahora</button>
+    <span class="ayuda-chica">El resultado también se actualiza solo mientras escribís.</span>
+  </div>
+
+  <h3>Resultado</h3>
+  <iframe id="vista-previa" class="vista-previa" title="Resultado del código"></iframe>
+
+  <details id="detalle-solucion" class="detalle-solucion">
+    <summary>¿Te trabaste? Ver una solución sugerida</summary>
+    <p id="explicacion-solucion" class="explicacion-solucion"></p>
+    <div class="solucion-grid">
+      <div class="solucion-columna">
+        <strong>HTML</strong>
+        <pre><code id="solucion-html"></code></pre>
       </div>
-      <div class="editor-columna">
-        <label for="editor-css">CSS</label>
-        <textarea id="editor-css" spellcheck="false"></textarea>
+      <div class="solucion-columna">
+        <strong>CSS</strong>
+        <pre><code id="solucion-css"></code></pre>
       </div>
-      <div class="editor-columna">
-        <label for="editor-js">JavaScript</label>
-        <textarea id="editor-js" spellcheck="false"></textarea>
+      <div class="solucion-columna">
+        <strong>JavaScript</strong>
+        <pre><code id="solucion-js"></code></pre>
       </div>
     </div>
+    <button id="btn-cargar-solucion" class="btn btn-secundario">Cargar esta solución en el editor</button>
+  </details>
 
-    <div class="acciones-leccion">
-      <button id="btn-ejecutar" class="btn btn-primario">Ejecutar ahora</button>
-      <span class="ayuda-chica">El resultado también se actualiza solo mientras escribís.</span>
-    </div>
+  <h3>Mis notas de esta lección</h3>
+  <textarea id="campo-notas" class="campo-notas" placeholder="Anotá acá lo que te costó, lo que entendiste, preguntas para después..."></textarea>
 
-    <h3>Resultado</h3>
-    <iframe id="vista-previa" class="vista-previa" title="Resultado del código"></iframe>
-
-    <details id="detalle-solucion" class="detalle-solucion">
-      <summary>¿Te trabaste? Ver una solución sugerida</summary>
-      <p id="explicacion-solucion" class="explicacion-solucion"></p>
-      <div class="solucion-grid">
-        <div class="solucion-columna">
-          <strong>HTML</strong>
-          <pre><code id="solucion-html"></code></pre>
-        </div>
-        <div class="solucion-columna">
-          <strong>CSS</strong>
-          <pre><code id="solucion-css"></code></pre>
-        </div>
-        <div class="solucion-columna">
-          <strong>JavaScript</strong>
-          <pre><code id="solucion-js"></code></pre>
-        </div>
-      </div>
-      <button id="btn-cargar-solucion" class="btn btn-secundario">Cargar esta solución en el editor</button>
-    </details>
-
-    <h3>Mis notas de esta lección</h3>
-    <textarea id="campo-notas" class="campo-notas" placeholder="Anotá acá lo que te costó, lo que entendiste, preguntas para después..."></textarea>
-  </main>
-</div>
+  <button id="btn-reiniciar-todo" class="btn btn-peligro btn-chico">Reiniciar todo mi progreso</button>
+</main>
 
 <footer class="pie">
   Proyecto de práctica personal · repositorio <code>informatica</code> · no es un servicio ofrecido a terceros
@@ -96,5 +119,16 @@
 <script src="js/progreso.js"></script>
 <script src="js/playground.js"></script>
 <script src="js/app.js"></script>
+<script>
+  /* Registrar el service worker solo cuando la página se sirve por https
+     (por ejemplo GitHub Pages). Así la app se puede "instalar" en el celular
+     y funcionar sin internet. Nunca rompe la app si no está disponible:
+     abierta como archivo local (file://) simplemente no se registra. */
+  if ('serviceWorker' in navigator && location.protocol === 'https:') {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function () { /* sin conexión / no soportado: la app sigue andando igual */ });
+    });
+  }
+</script>
 </body>
 </html>

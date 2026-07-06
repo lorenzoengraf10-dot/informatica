@@ -5,11 +5,13 @@ control de versiones) de forma autodidacta y sin apuro.
 
 ## Empezar acá
 
-**[`aprender/index.html`](aprender/index.html)** es una aplicación de 18
+**[`aprender/index.html`](aprender/index.html)** es una aplicación de 27
 lecciones interactivas de HTML, CSS y JavaScript con editor de código en vivo
-y solución sugerida en cada una: se abre en el navegador, sin instalar nada, y
-guarda tu progreso solo. Ver `aprender/README.md` para el detalle de cómo
-usarla y el temario completo.
+y solución sugerida en cada una. Está pensada primero para el celular
+(mobile-first) y se puede instalar como app en el teléfono y usar sin internet;
+en la computadora aprovecha el ancho. Se abre en el navegador, sin instalar
+nada, y guarda tu progreso solo. Ver `aprender/README.md` para el detalle de
+cómo usarla y el temario completo.
 
 La idea de fondo: el emprendimiento real **Productos Patagónicos**
 (repositorio [`productosoatagonicos`](https://github.com/lorenzoengraf10-dot/productosoatagonicos))
@@ -21,7 +23,7 @@ lecciones y los proyectos de práctica más chicos y sueltos.
 
 ```
 informatica/
-  aprender/                 aplicación de 18 lecciones interactivas (empezar acá)
+  aprender/                 aplicación de 27 lecciones interactivas, mobile-first (empezar acá)
   ROADMAP.md                plan general de aprendizaje, por fases
   BITACORA.md               registro personal: qué se probó, qué se aprendió, cuándo
   proyectos-practica/

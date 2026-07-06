@@ -167,6 +167,180 @@ figcaption { font-size: 0.85rem; color: #666; margin-top: 4px; }`,
     explicacionSolucion: 'El alt describe qué muestra la imagen, no repite "imagen de..." (eso ya lo sabe el lector de pantalla). El <figure> agrupa imagen y epígrafe como una sola unidad de contenido, y el <figcaption> es el texto visible que la explica.'
   },
 
+  {
+    id: 'html-texto-formato',
+    categoria: 'HTML',
+    titulo: 'HTML: dar formato al texto',
+    resumen: `Dentro de un párrafo, HTML tiene etiquetas para darle sentido al texto:
+<strong> marca algo importante (se ve en negrita), <em> le da énfasis (cursiva),
+<mark> lo resalta como con marcador, <small> lo hace más chico, <code> muestra
+código con tipografía monoespaciada, y <blockquote> arma una cita. <br> hace un
+salto de línea y <hr> dibuja una línea divisoria. La diferencia entre usar
+<strong> y poner negrita con CSS es que <strong> además le avisa al navegador y a
+los lectores de pantalla que ese texto ES importante, no solo que se ve distinto.`,
+    reto: 'Marcá una palabra con <strong>, resaltá otra con <mark>, y agregá una cita con <blockquote>.',
+    html: `<p>Los productos patagónicos son artesanales.</p>`,
+    css: `body { line-height: 1.6; }`,
+    js: `// No hace falta JavaScript para esta lección`,
+    solucion: {
+      html: `<p>Los productos patagónicos son <strong>artesanales</strong> y de <mark>elaboración propia</mark>.</p>
+
+<blockquote>"La bondiola ahumada es la más pedida del catálogo."</blockquote>
+
+<p><small>Los precios pueden cambiar sin previo aviso.</small></p>`,
+      css: `body { line-height: 1.6; }
+blockquote { border-left: 3px solid #c8922a; padding-left: 12px; color: #555; }`,
+      js: `// No hace falta JavaScript para esta lección`
+    },
+    explicacionSolucion: '<strong> y <mark> se ponen alrededor de las palabras que se quieren destacar, dentro del párrafo. <blockquote> es un bloque aparte para citas. Usar estas etiquetas (y no solo cambiar el color con CSS) hace que el significado quede en el HTML, que es lo que leen Google y los lectores de pantalla.'
+  },
+  {
+    id: 'html-enlaces',
+    categoria: 'HTML',
+    titulo: 'HTML: enlaces y navegación',
+    resumen: `El enlace <a href="..."> lleva a otro lado. Si href es una dirección
+completa (https://...) va a otra página; si es "#contacto" salta a un elemento que
+tenga id="contacto" en la MISMA página (muy útil en páginas largas de celular para
+ir directo a una sección). target="_blank" abre el enlace en una pestaña nueva.
+<nav> agrupa los enlaces de navegación del sitio, para que se entienda que son el
+menú y no enlaces sueltos dentro del texto.`,
+    reto: 'Armá un <nav> con dos enlaces: uno interno que salte a #contacto (con #) y uno externo que abra otra página en una pestaña nueva (target="_blank").',
+    html: `<h1>Productos Patagónicos</h1>
+<p>Embutidos y ahumados artesanales.</p>
+<p id="contacto">Escribinos por WhatsApp para hacer tu pedido.</p>`,
+    css: `nav a { margin-right: 10px; }`,
+    js: `// No hace falta JavaScript para esta lección`,
+    solucion: {
+      html: `<nav>
+  <a href="#contacto">Ir a contacto</a>
+  <a href="https://es.wikipedia.org/wiki/Patagonia" target="_blank">Sobre la Patagonia</a>
+</nav>
+
+<h1>Productos Patagónicos</h1>
+<p>Embutidos y ahumados artesanales.</p>
+<p id="contacto">Escribinos por WhatsApp para hacer tu pedido.</p>`,
+      css: `nav a { margin-right: 10px; }`,
+      js: `// No hace falta JavaScript para esta lección`
+    },
+    explicacionSolucion: 'El enlace interno usa href="#contacto" y funciona porque abajo hay un <p id="contacto">: al tocarlo, la página salta a ese párrafo. El enlace externo lleva una dirección completa y target="_blank" para abrirlo aparte sin perder esta página.'
+  },
+  {
+    id: 'html-semantica',
+    categoria: 'HTML',
+    titulo: 'HTML: secciones con significado',
+    resumen: `Antes se usaba <div> para todo. Las etiquetas semánticas dicen QUÉ es
+cada parte de la página: <header> es el encabezado, <nav> el menú, <main> el
+contenido principal (uno solo por página), <section> una sección temática,
+<article> un contenido que tiene sentido por sí solo (una nota, una ficha de
+producto), <aside> algo secundario, y <footer> el pie. Se ven igual que un <div>,
+pero ayudan al SEO (Google entiende mejor la página) y a los lectores de pantalla,
+que pueden saltar directo al contenido principal. En el celular esto también
+ayuda a los lectores de pantalla a moverse rápido.`,
+    reto: 'Envolvé el contenido usando <header> para el título, <main> para el texto principal y <footer> para el pie.',
+    html: `<h1>Productos Patagónicos</h1>
+<p>Nuestra selección de embutidos y ahumados.</p>
+<p>Hecho en la Patagonia.</p>`,
+    css: `header, footer { padding: 8px 0; }
+footer { color: #777; font-size: 0.9rem; border-top: 1px solid #ddd; margin-top: 12px; }`,
+    js: `// No hace falta JavaScript para esta lección`,
+    solucion: {
+      html: `<header>
+  <h1>Productos Patagónicos</h1>
+</header>
+
+<main>
+  <p>Nuestra selección de embutidos y ahumados.</p>
+</main>
+
+<footer>
+  <p>Hecho en la Patagonia.</p>
+</footer>`,
+      css: `header, footer { padding: 8px 0; }
+footer { color: #777; font-size: 0.9rem; border-top: 1px solid #ddd; margin-top: 12px; }`,
+      js: `// No hace falta JavaScript para esta lección`
+    },
+    explicacionSolucion: 'Cada bloque se envuelve según su rol: el título va en <header>, el contenido central en <main> (que debe ser único en la página) y el cierre en <footer>. Visualmente casi no cambia nada, pero ahora la estructura de la página tiene significado.'
+  },
+  {
+    id: 'html-detalles',
+    categoria: 'HTML',
+    titulo: 'HTML: contenido desplegable y símbolos',
+    resumen: `<details> junto con <summary> arma un bloque que se abre y se cierra al
+tocarlo, SIN nada de JavaScript. En el celular es ideal para preguntas frecuentes o
+secciones que ocupan poco espacio hasta que el usuario las abre. Las "entidades"
+son códigos para escribir caracteres especiales: &copy; muestra ©, &amp; muestra &,
+&lt; muestra <, &gt; muestra >, y &nbsp; es un espacio que no se parte en dos
+líneas. También podés escribir emojis directamente en el HTML.`,
+    reto: 'Agregá un segundo <details> con otra pregunta, y un símbolo de copyright usando &copy; en el pie.',
+    html: `<details>
+  <summary>¿Hacen envíos?</summary>
+  <p>Sí, a toda la zona.</p>
+</details>
+
+<p>Productos Patagónicos</p>`,
+    css: `summary { cursor: pointer; font-weight: bold; }`,
+    js: `// No hace falta JavaScript para esta lección`,
+    solucion: {
+      html: `<details>
+  <summary>¿Hacen envíos?</summary>
+  <p>Sí, a toda la zona.</p>
+</details>
+
+<details>
+  <summary>¿Cómo pago?</summary>
+  <p>Efectivo o transferencia.</p>
+</details>
+
+<p>&copy; 2026 Productos Patagónicos</p>`,
+      css: `summary { cursor: pointer; font-weight: bold; }`,
+      js: `// No hace falta JavaScript para esta lección`
+    },
+    explicacionSolucion: 'Cada <details> es independiente y se abre por separado al tocar su <summary>. En el pie, &copy; se escribe así en el HTML pero el navegador lo muestra como el símbolo ©; conviene usar la entidad y no pegar el © directo, porque según la codificación puede fallar.'
+  },
+  {
+    id: 'html-inputs-movil',
+    categoria: 'HTML',
+    titulo: 'HTML: formularios pensados para el celular',
+    resumen: `El atributo type del <input> cambia el teclado que aparece en el
+celular. type="email" muestra un teclado con arroba; type="tel" muestra el teclado
+numérico del teléfono; type="number" solo números; type="date" un selector de
+fecha. Elegir bien el type hace que cargar datos en el celular sea mucho más
+cómodo: la persona no tiene que cambiar de teclado a mano. El atributo placeholder
+muestra un ejemplo gris dentro del campo, y required lo hace obligatorio.`,
+    reto: 'Cambiá cada input al type correcto para que el celular muestre el teclado adecuado: email para el correo, tel para el teléfono y number para la cantidad.',
+    html: `<form>
+  <label>Email
+    <input type="text" placeholder="tu@correo.com">
+  </label>
+  <label>Teléfono
+    <input type="text" placeholder="Solo números">
+  </label>
+  <label>Cantidad
+    <input type="text" placeholder="1">
+  </label>
+</form>`,
+    css: `form { display: flex; flex-direction: column; gap: 10px; }
+input { padding: 8px; font-size: 16px; }`,
+    js: `// No hace falta JavaScript para esta lección`,
+    solucion: {
+      html: `<form>
+  <label>Email
+    <input type="email" placeholder="tu@correo.com">
+  </label>
+  <label>Teléfono
+    <input type="tel" placeholder="Solo números">
+  </label>
+  <label>Cantidad
+    <input type="number" placeholder="1" min="1">
+  </label>
+</form>`,
+      css: `form { display: flex; flex-direction: column; gap: 10px; }
+input { padding: 8px; font-size: 16px; }`,
+      js: `// No hace falta JavaScript para esta lección`
+    },
+    explicacionSolucion: 'Cambiando solo el type, el mismo formulario se vuelve mucho más cómodo en el celular: type="email" trae el teclado con arroba, type="tel" el pad numérico del teléfono y type="number" solo números. Además, dejar font-size en 16px evita que el celular haga zoom automático al tocar el campo.'
+  },
+
   // ---------- CSS ----------
   {
     id: 'css-caja',
@@ -396,6 +570,160 @@ ejemplo, transition: background-color 0.3s ease).`,
       js: `// No hace falta JavaScript para esta lección`
     },
     explicacionSolucion: 'transform: scale(1.05) agranda el elemento un 5% sin afectar a los elementos de al lado (a diferencia de cambiar width/height). Hay que agregar transform a la lista de transition para que el agrandado también sea animado y no instantáneo.'
+  },
+
+  {
+    id: 'css-colores-unidades',
+    categoria: 'CSS',
+    titulo: 'CSS: colores y unidades',
+    resumen: `Los colores se pueden escribir de varias formas: por nombre (red), en
+hexadecimal (#c8922a), o en rgb (rgb(200, 146, 42)). Para transparencia está rgba,
+donde el cuarto valor va de 0 (invisible) a 1 (opaco). Las unidades de tamaño
+también importan: px es un tamaño fijo; % es relativo al contenedor; rem es
+relativo al tamaño de letra base de la página (ideal para que todo escale junto);
+y vw / vh son el ancho / alto de la pantalla (1vw = 1% del ancho de la pantalla),
+muy útiles en el celular para que las cosas se adapten al tamaño real de cada
+teléfono.`,
+    reto: 'Cambiá el color de fondo a un rgb a elección y hacé que el ancho de la caja sea 80vw (el 80% del ancho de la pantalla).',
+    html: `<div class="caja">Caja de prueba</div>`,
+    css: `.caja {
+  background-color: #eee;
+  width: 200px;
+  padding: 20px;
+  border-radius: 8px;
+}`,
+    js: `// No hace falta JavaScript para esta lección`,
+    solucion: {
+      html: `<div class="caja">Caja de prueba</div>`,
+      css: `.caja {
+  background-color: rgb(200, 146, 42);
+  color: white;
+  width: 80vw;
+  padding: 20px;
+  border-radius: 8px;
+}`,
+      js: `// No hace falta JavaScript para esta lección`
+    },
+    explicacionSolucion: 'rgb(200, 146, 42) es el mismo dorado de la marca escrito con los tres canales (rojo, verde, azul). width: 80vw hace que la caja ocupe siempre el 80% del ancho de la pantalla, así que se adapta sola tanto en un celular chico como en una pantalla grande, sin tener que fijar un número de píxeles.'
+  },
+  {
+    id: 'css-tipografia',
+    categoria: 'CSS',
+    titulo: 'CSS: tipografía y legibilidad',
+    resumen: `font-family define la fuente, con una lista de respaldo por si la
+primera no está (por ejemplo: 'Georgia, serif'). font-size es el tamaño,
+font-weight el grosor (400 es normal, 700 negrita), line-height el interlineado
+(1.5 a 1.6 se lee cómodo, sobre todo en el celular donde las líneas son angostas),
+letter-spacing el espacio entre letras, y text-align la alineación. Una buena
+tipografía y un buen interlineado hacen una diferencia enorme en la legibilidad
+en pantallas chicas.`,
+    reto: 'Mejorá la legibilidad: subí el line-height a 1.6, poné el título en font-weight 700 y agrandá un poco el font-size del párrafo.',
+    html: `<h2>Bondiola ahumada</h2>
+<p>Elaboración artesanal, madurada lentamente y ahumada con leña de la región. Ideal para tablas y picadas.</p>`,
+    css: `body {
+  font-family: Georgia, serif;
+  line-height: 1.2;
+}
+p { font-size: 14px; }`,
+    js: `// No hace falta JavaScript para esta lección`,
+    solucion: {
+      html: `<h2>Bondiola ahumada</h2>
+<p>Elaboración artesanal, madurada lentamente y ahumada con leña de la región. Ideal para tablas y picadas.</p>`,
+      css: `body {
+  font-family: Georgia, serif;
+  line-height: 1.6;
+}
+h2 { font-weight: 700; }
+p { font-size: 17px; }`,
+      js: `// No hace falta JavaScript para esta lección`
+    },
+    explicacionSolucion: 'Subir el line-height de 1.2 a 1.6 separa las líneas y hace el texto mucho más fácil de leer en un celular. Un font-size un poco más grande (17px) y el título en negrita completan una jerarquía clara: se distingue al toque qué es título y qué es texto.'
+  },
+  {
+    id: 'css-posicion',
+    categoria: 'CSS',
+    titulo: 'CSS: posición y barras fijas',
+    resumen: `La propiedad position cambia cómo se ubica un elemento. static es lo
+normal. relative permite correrlo un poco respecto de su lugar. absolute lo ubica
+respecto de su ancestro posicionado. fixed lo deja clavado en la pantalla aunque
+scrollees. Y sticky (el más útil en el celular) hace que un elemento se comporte
+normal hasta que llegás scrolleando a él, y ahí se "pega" al borde y queda a la
+vista: perfecto para una barra de título o un menú que quede siempre arriba
+mientras se navega una lista larga.`,
+    reto: 'Hacé que la barra quede pegada arriba (sticky) al scrollear la lista.',
+    html: `<div class="barra">Productos Patagónicos</div>
+<ul>
+  <li>Bondiola</li><li>Embutidos</li><li>Conservas</li>
+  <li>Mundialista</li><li>Odisea</li><li>Tradicional</li>
+  <li>Simple</li><li>Bondiola</li><li>Embutidos</li><li>Conservas</li>
+</ul>`,
+    css: `.barra {
+  background-color: #2a6f77;
+  color: white;
+  padding: 12px;
+  font-weight: bold;
+}
+li { padding: 12px; border-bottom: 1px solid #eee; }`,
+    js: `// No hace falta JavaScript para esta lección`,
+    solucion: {
+      html: `<div class="barra">Productos Patagónicos</div>
+<ul>
+  <li>Bondiola</li><li>Embutidos</li><li>Conservas</li>
+  <li>Mundialista</li><li>Odisea</li><li>Tradicional</li>
+  <li>Simple</li><li>Bondiola</li><li>Embutidos</li><li>Conservas</li>
+</ul>`,
+      css: `.barra {
+  background-color: #2a6f77;
+  color: white;
+  padding: 12px;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+}
+li { padding: 12px; border-bottom: 1px solid #eee; }`,
+      js: `// No hace falta JavaScript para esta lección`
+    },
+    explicacionSolucion: 'position: sticky junto con top: 0 hace que la barra se quede pegada al borde de arriba cuando scrolleás la lista, en vez de irse hacia arriba con el resto del contenido. Probá scrollear el recuadro de resultado para verlo: es el mismo truco que usan las apps para dejar el título siempre visible.'
+  },
+  {
+    id: 'css-sombras',
+    categoria: 'CSS',
+    titulo: 'CSS: sombras y profundidad',
+    resumen: `box-shadow le da sombra a una caja y sirve para que parezca "elevada",
+como una tarjeta. Lleva cuatro valores: desplazamiento horizontal, vertical, cuánto
+se desenfoca, y el color (normalmente un negro con transparencia, como
+rgba(0,0,0,0.2)). text-shadow hace lo mismo con el texto. Las sombras suaves dan
+esa sensación de tarjeta despegada del fondo que se ve en casi todas las apps de
+celular.`,
+    reto: 'Agregale a la tarjeta una box-shadow suave para que parezca elevada.',
+    html: `<div class="tarjeta">
+  <h3>Bondiola ahumada</h3>
+  <p>$8500</p>
+</div>`,
+    css: `.tarjeta {
+  background-color: white;
+  padding: 16px;
+  border-radius: 10px;
+  max-width: 240px;
+}
+body { background-color: #f0e8d5; padding: 16px; }`,
+    js: `// No hace falta JavaScript para esta lección`,
+    solucion: {
+      html: `<div class="tarjeta">
+  <h3>Bondiola ahumada</h3>
+  <p>$8500</p>
+</div>`,
+      css: `.tarjeta {
+  background-color: white;
+  padding: 16px;
+  border-radius: 10px;
+  max-width: 240px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+body { background-color: #f0e8d5; padding: 16px; }`,
+      js: `// No hace falta JavaScript para esta lección`
+    },
+    explicacionSolucion: 'box-shadow: 0 4px 12px rgba(0,0,0,0.15) significa: sin desplazamiento horizontal, 4px hacia abajo, 12px de desenfoque, y un negro muy transparente. El resultado es una sombra suave debajo de la tarjeta que la hace ver despegada del fondo, como en las apps.'
   },
 
   // ---------- JavaScript ----------

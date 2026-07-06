@@ -1,10 +1,14 @@
-/* Conecta la lista de lecciones, el playground, el progreso y el panel
- * de solución sugerida. */
+/* Conecta la navegación (desplegable + flechas), el playground, el progreso,
+ * las pestañas de editor y el panel de solución sugerida.
+ * La app está pensada primero para el celular: navegación por desplegable y
+ * botones de anterior/siguiente, y un editor a la vez con pestañas. */
 
 let leccionActualId = LECCIONES[0].id;
 
 document.addEventListener('DOMContentLoaded', () => {
-  renderListaLecciones();
+  construirSelector();
+  configurarNavegacion();
+  configurarPestanasEditor();
   cargarLeccion(leccionActualId);
 
   document.getElementById('btn-ejecutar').addEventListener('click', ejecutarCodigoActual);
@@ -13,17 +17,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('btn-completada').addEventListener('click', () => {
     Progreso.alternarCompletada(leccionActualId);
-    renderListaLecciones();
     actualizarBotonCompletada();
     actualizarBarraProgreso();
+    actualizarEtiquetasSelector();
   });
 
   document.getElementById('btn-reiniciar-todo').addEventListener('click', () => {
     if (!confirm('Esto borra tu progreso, tu código editado y tus notas de todas las lecciones. ¿Continuar?')) return;
     Progreso.reiniciarTodo();
-    renderListaLecciones();
     cargarLeccion(leccionActualId);
     actualizarBarraProgreso();
+    actualizarEtiquetasSelector();
   });
 
   ['editor-html', 'editor-css', 'editor-js'].forEach((idCampo) => {
@@ -44,7 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* Sin esto, tocar Tab dentro de un editor mueve el foco a otro campo (el
  * comportamiento normal del navegador) en vez de insertar una indentación,
- * que es lo esperable en cualquier editor de código. */
+ * que es lo esperable en cualquier editor de código. En el celular no molesta
+ * porque el teclado táctil no suele tener Tab. */
 function habilitarTab(campo) {
   campo.addEventListener('keydown', (evento) => {
     if (evento.key !== 'Tab') return;
@@ -58,37 +63,79 @@ function habilitarTab(campo) {
   });
 }
 
-function renderListaLecciones() {
-  const contenedor = document.getElementById('lista-lecciones');
-  let categoriaAnterior = null;
-  let html = '';
+/* ---------- Navegación por desplegable ---------- */
 
-  LECCIONES.forEach((leccion) => {
+function construirSelector() {
+  const select = document.getElementById('selector-leccion');
+  let categoriaAnterior = null;
+  let grupo = null;
+  select.innerHTML = '';
+
+  LECCIONES.forEach((leccion, indice) => {
     if (leccion.categoria !== categoriaAnterior) {
-      html += `<li class="titulo-categoria">${leccion.categoria}</li>`;
+      grupo = document.createElement('optgroup');
+      grupo.label = leccion.categoria;
+      select.appendChild(grupo);
       categoriaAnterior = leccion.categoria;
     }
-    html += `
-      <li>
-        <button class="item-leccion ${leccion.id === leccionActualId ? 'activa' : ''}" data-id="${leccion.id}">
-          <span class="marca ${Progreso.estaCompletada(leccion.id) ? 'completa' : ''}"></span>
-          ${leccion.titulo}
-        </button>
-      </li>
-    `;
+    const opcion = document.createElement('option');
+    opcion.value = leccion.id;
+    opcion.dataset.titulo = `${indice + 1}. ${leccion.titulo}`;
+    grupo.appendChild(opcion);
   });
 
-  contenedor.innerHTML = html;
+  actualizarEtiquetasSelector();
 
-  contenedor.querySelectorAll('.item-leccion').forEach((boton) => {
-    boton.addEventListener('click', () => cargarLeccion(boton.dataset.id));
+  select.addEventListener('change', () => cargarLeccion(select.value));
+}
+
+/* Refresca el texto de cada opción para mostrar un tilde en las completadas. */
+function actualizarEtiquetasSelector() {
+  const select = document.getElementById('selector-leccion');
+  select.querySelectorAll('option').forEach((opcion) => {
+    const completa = Progreso.estaCompletada(opcion.value);
+    opcion.textContent = (completa ? '✓ ' : '') + opcion.dataset.titulo;
+  });
+  select.value = leccionActualId;
+}
+
+function configurarNavegacion() {
+  document.getElementById('btn-anterior').addEventListener('click', () => irRelativo(-1));
+  document.getElementById('btn-siguiente').addEventListener('click', () => irRelativo(1));
+}
+
+function irRelativo(paso) {
+  const indice = LECCIONES.findIndex((l) => l.id === leccionActualId);
+  const nuevo = indice + paso;
+  if (nuevo < 0 || nuevo >= LECCIONES.length) return;
+  cargarLeccion(LECCIONES[nuevo].id);
+}
+
+/* ---------- Pestañas de editor (celular: uno a la vez) ---------- */
+
+function configurarPestanasEditor() {
+  document.querySelectorAll('.editor-tab').forEach((tab) => {
+    tab.addEventListener('click', () => activarEditor(tab.dataset.editor));
   });
 }
+
+function activarEditor(cual) {
+  document.querySelectorAll('.editor-tab').forEach((t) => {
+    t.classList.toggle('activo', t.dataset.editor === cual);
+  });
+  document.querySelectorAll('.editor-panel').forEach((p) => {
+    p.classList.toggle('activo', p.dataset.editor === cual);
+  });
+}
+
+/* ---------- Cargar una lección ---------- */
 
 function cargarLeccion(id) {
   leccionActualId = id;
   const leccion = LECCIONES.find((l) => l.id === id);
+  const indice = LECCIONES.findIndex((l) => l.id === id);
 
+  document.getElementById('categoria-leccion').textContent = leccion.categoria;
   document.getElementById('titulo-leccion').textContent = leccion.titulo;
   document.getElementById('resumen-leccion').textContent = leccion.resumen;
   document.getElementById('reto-leccion').textContent = leccion.reto;
@@ -108,9 +155,20 @@ function cargarLeccion(id) {
   document.getElementById('solucion-js').textContent = leccion.solucion.js;
   document.getElementById('detalle-solucion').removeAttribute('open');
 
+  // Navegación
+  document.getElementById('selector-leccion').value = id;
+  document.getElementById('contador-leccion').textContent = `${indice + 1} / ${LECCIONES.length}`;
+  document.getElementById('btn-anterior').disabled = indice === 0;
+  document.getElementById('btn-siguiente').disabled = indice === LECCIONES.length - 1;
+
+  // Volver a la pestaña de HTML al cambiar de lección (empezás por el HTML)
+  activarEditor('html');
+
   actualizarBotonCompletada();
-  renderListaLecciones();
   ejecutarCodigoActual();
+
+  // Al cambiar de lección, subir para ver el enunciado desde arriba
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function obtenerCodigoDeEditores() {
@@ -156,7 +214,7 @@ function cargarSolucionEnEditor() {
 function actualizarBotonCompletada() {
   const boton = document.getElementById('btn-completada');
   const completada = Progreso.estaCompletada(leccionActualId);
-  boton.textContent = completada ? 'Marcada como completada ✓ (click para desmarcar)' : 'Marcar lección como completada';
+  boton.textContent = completada ? 'Completada ✓ (tocá para desmarcar)' : 'Marcar como completada';
   boton.classList.toggle('completada', completada);
 }
 

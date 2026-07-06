@@ -50,3 +50,36 @@ sugerido:
 - Pendiente: resolver los 18 desafíos sin mirar la solución antes de intentarlo,
   y considerar agregar más lecciones de JavaScript intermedio (funciones flecha,
   `async`/`fetch`) cuando se llegue a la Fase 3 del roadmap (backend).
+
+## 2026-07-06 (tercera entrada) — más lecciones y rediseño para el celular
+
+- Qué probé: usé `aprender/` como si fuera en el celular y me di cuenta de que el
+  diseño era para computadora (barra lateral fija, hay que scrollear un montón).
+- Qué agregué (contenido): pasé de 18 a 27 lecciones. Sumé 5 de HTML (formato de
+  texto, enlaces, semántica, contenido desplegable con `details`, y formularios
+  pensados para el celular con los tipos de input que cambian el teclado) y 4 de
+  CSS (colores y unidades con `rem`/`vw`/`vh`, tipografía, posición con `sticky`,
+  y sombras). Hice los resúmenes más detallados, como me habían pedido.
+- Qué cambié (diseño): rehíce la app pensándola primero para el celular
+  (mobile-first). La navegación ahora es un desplegable + botones grandes de
+  anterior/siguiente en vez de una barra lateral; los tres editores se muestran
+  de a uno con pestañas (HTML/CSS/JS) para no scrollear tanto; botones y campos
+  más grandes para el dedo; letra de 16px en los campos para que el celular no
+  haga zoom al tocarlos. En pantalla ancha (computadora) una sola media query
+  vuelve a mostrar los tres editores a la vez.
+- Qué automaticé: la convertí en PWA (app instalable). Agregué `manifest.json`,
+  un ícono y un service worker (`sw.js`) que guarda una copia de la app para que
+  funcione sin internet. Cuando se sirve por HTTPS (GitHub Pages), el celular
+  ofrece "Agregar a la pantalla de inicio" y queda como una app más. Abierta como
+  archivo local no se activa, pero la app funciona igual.
+- Qué probé (verificación): con Playwright emulando un celular (390x844, touch)
+  confirmé que no hay scroll horizontal, que las 27 lecciones están en el
+  desplegable agrupadas por categoría, que las pestañas de editor muestran uno a
+  la vez, que anterior/siguiente y el selector navegan bien, que la vista previa
+  se actualiza en vivo, que cargar una solución funciona (input type=email en la
+  lección de formularios móviles), y que marcar completada agrega el ✓ en el
+  desplegable. También verifiqué que en pantalla ancha se ven los tres editores
+  a la vez. Cero errores de consola.
+- Nota para el futuro: al cambiar archivos de la app hay que subir la versión
+  `CACHE` en `sw.js`, si no los celulares se quedan con la copia vieja.
+- Pendiente: resolver los 27 desafíos sin mirar la solución antes de intentarlo.

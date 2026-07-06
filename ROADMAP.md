@@ -5,17 +5,20 @@ proyecto real y concreto, no en ejercicios sueltos sin contexto.
 
 ## Fase 1 — Fundamentos de HTML, CSS y JavaScript
 
-Proyecto de apoyo: [`aprender/`](aprender/) (18 lecciones interactivas con
-solución sugerida) y `proyectos-practica/pagina-pruebas/`.
+Proyecto de apoyo: [`aprender/`](aprender/) (27 lecciones interactivas
+mobile-first, con solución sugerida) y `proyectos-practica/pagina-pruebas/`.
 
 - [x] Estructura semántica de HTML (`header`, `main`, `section`, `footer`, etc.).
-- [x] HTML: listas, tablas, formularios completos, imágenes y accesibilidad (`alt`).
+- [x] HTML: listas, tablas, formularios completos, imágenes y accesibilidad (`alt`),
+      formato de texto, enlaces, semántica, contenido desplegable, y formularios
+      pensados para el celular (tipos de input y el teclado del teléfono).
 - [x] CSS: modelo de caja, Flexbox, Grid, diseño responsive (media queries),
-      transiciones y estados (`:hover`).
+      transiciones y estados (`:hover`), colores y unidades (rem/vw/vh),
+      tipografía, posición (`sticky`), sombras.
 - [x] JavaScript: variables, funciones, condicionales, arrays y sus métodos
       (`forEach`, `filter`), objetos, DOM, eventos y formularios, JSON,
       `localStorage`, manejo de errores (`try/catch`).
-- [ ] Resolver los 18 desafíos de `aprender/` sin mirar la solución sugerida
+- [ ] Resolver los 27 desafíos de `aprender/` sin mirar la solución sugerida
       antes de intentarlo (usarla para comparar, no para copiar directo).
 - [ ] Practicar accesibilidad más a fondo (contraste de colores, navegación
       solo con teclado).

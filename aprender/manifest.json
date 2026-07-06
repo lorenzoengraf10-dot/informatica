@@ -1,0 +1,20 @@
+{
+  "name": "Aprender a programar",
+  "short_name": "Aprender",
+  "description": "Lecciones interactivas de HTML, CSS y JavaScript con editor de código en vivo, pensadas para el celular.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fafafa",
+  "theme_color": "#2a6f77",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "icono.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    }
+  ]
+}
